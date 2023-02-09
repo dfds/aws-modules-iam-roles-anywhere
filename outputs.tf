@@ -9,5 +9,5 @@ output "iam_role_arn" {
 }
 
 output "trust_anchor_arn" {
-    value = aws_rolesanywhere_trust_anchor.this.arn
+  value = aws_rolesanywhere_trust_anchor.this.arn
 }

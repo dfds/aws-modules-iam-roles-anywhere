@@ -2,11 +2,11 @@ data "aws_iam_policy_document" "role_trust_relationship" {
   statement {
     sid = "1"
 
-    effect  = "Allow"
+    effect = "Allow"
     actions = [
-        "sts:AssumeRole",
-        "sts:TagSession",
-        "sts:SetSourceIdentity"
+      "sts:AssumeRole",
+      "sts:TagSession",
+      "sts:SetSourceIdentity"
     ]
 
     principals {
@@ -28,11 +28,11 @@ data "aws_iam_policy_document" "role_trust_relationship" {
   }
 
   dynamic "statement" {
-      for_each = var.iam_role_actions
-      content {
-        effect = "Allow"
-        actions = [statement.value["action"]]
-        resources = [statement.value["resource"] != "" ? statement.value["resource"] : ""]
-      }
+    for_each = var.iam_role_actions
+    content {
+      effect    = "Allow"
+      actions   = [statement.value["action"]]
+      resources = [statement.value["resource"] != "" ? statement.value["resource"] : ""]
+    }
   }
 }
