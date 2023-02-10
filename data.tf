@@ -26,7 +26,9 @@ data "aws_iam_policy_document" "role_trust_relationship" {
       variable = "aws:PrincipalTag/x509Subject/CN"
     }
   }
+}
 
+data "aws_iam_policy_document" "role_policy" {
   dynamic "statement" {
     for_each = var.iam_role_actions
     content {

@@ -10,6 +10,10 @@ provider "aws" {
 resource "aws_iam_role" "this" {
   name               = "${var.system_name}-role"
   assume_role_policy = data.aws_iam_policy_document.role_trust_relationship.json
+  inline_policy {
+    name   = "${var.system_name}-policy"
+    policy = data.aws_iam_policy_document.role_policy.json
+  }
 }
 
 resource "aws_rolesanywhere_profile" "this" {
