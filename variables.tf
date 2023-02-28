@@ -5,7 +5,7 @@ variable "system_name" {
 
 variable "system_environment" {
   type        = string
-  description = "(optional) System Environment"
+  description = "System Environment"
   default     = ""
 }
 
