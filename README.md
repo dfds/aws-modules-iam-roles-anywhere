@@ -45,7 +45,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_iam_profile_arn"></a> [iam\_profile\_arn](#output\_iam\_profile\_arn) | IAM roles anywhere profile Arn |
-| <a name="output_iam_role_arn"></a> [iam\_role\_arn](#output\_iam\_role\_arn) | IAM role Arn |
-| <a name="output_trust_anchor_arn"></a> [trust\_anchor\_arn](#output\_trust\_anchor\_arn) | n/a |
+| <a name="output_iam_profile_arn"></a> [iam\_profile\_arn](#output\_iam\_profile\_arn) | The Arn of the aws iam role anywhere profile |
+| <a name="output_iam_role_arn"></a> [iam\_role\_arn](#output\_iam\_role\_arn) | The Arn of the aws iam role |
+| <a name="output_trust_anchor_arn"></a> [trust\_anchor\_arn](#output\_trust\_anchor\_arn) | The Arn of the aws iam role anywhere trust anchor |
 <!-- END_TF_DOCS -->
