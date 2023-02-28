@@ -35,7 +35,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_iam_role_actions"></a> [iam\_role\_actions](#input\_iam\_role\_actions) | Actions and the corresponding resource that are allowed to be actioned on by the assumed role | <pre>list(object({<br>    action   = string<br>    resource = string<br>  }))</pre> | `[]` | no |
-| <a name="input_system_environment"></a> [system\_environment](#input\_system\_environment) | (optional) System Environment | `string` | `""` | no |
+| <a name="input_system_environment"></a> [system\_environment](#input\_system\_environment) | System Environment | `string` | `""` | no |
 | <a name="input_system_name"></a> [system\_name](#input\_system\_name) | Name of the application of service to be used with IAM Roles Anywhere | `string` | n/a | yes |
 | <a name="input_x509_certificate_data"></a> [x509\_certificate\_data](#input\_x509\_certificate\_data) | Bundled Certificate x509 Certificate Data | `string` | n/a | yes |
 | <a name="input_x509_subject_cn_values"></a> [x509\_subject\_cn\_values](#input\_x509\_subject\_cn\_values) | List of the values of approved certificate CN's | `list(string)` | n/a | yes |
