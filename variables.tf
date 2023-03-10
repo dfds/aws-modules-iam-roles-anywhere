@@ -32,3 +32,17 @@ variable "iam_role_actions" {
   }))
   default = []
 }
+
+variable "crl_name" {
+  type = string
+  description = "Name of the certificate revocation list (CRL)"
+}
+
+variable "crl_url" {
+  type = string
+  description = "URL of the certificate revocation list (CRL)"
+  validation {
+    condition = startswith(var.crl_url, "https://")
+    error_message = "The URL must include `https://`."
+  }
+}
