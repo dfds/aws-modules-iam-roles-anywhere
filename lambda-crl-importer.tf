@@ -9,9 +9,10 @@ resource "aws_lambda_function" "this" {
   memory_size                    = 512
   reserved_concurrent_executions = 1
   runtime = "go1.x"
-  handler = "main.go"
+  handler = "main"
   s3_bucket = "dfds-iam-roles-anywhere-artifacts"
   s3_key = "${local.lambda_name}-lambda.zip"
+  source_code_hash = data.aws_s3_object.this.etag
 
   environment {
     variables = {
@@ -24,6 +25,11 @@ resource "aws_lambda_function" "this" {
   tracing_config {
     mode = "Active"
   }
+}
+
+data "aws_s3_object" "this" {
+  bucket = "dfds-iam-roles-anywhere-artifacts"
+  key    = "${local.lambda_name}-lambda.zip"
 }
 
 resource "aws_iam_role" "lambda" {
@@ -65,7 +71,7 @@ data "aws_iam_policy_document" "lambda_access" {
   }
 
   statement {
-    sid = "AccessPCA"
+    sid = "AccessRolesAnywhere"
     actions = [
       "rolesanywhere:ListCrls",
       "rolesanywhere:EnableCrl",
