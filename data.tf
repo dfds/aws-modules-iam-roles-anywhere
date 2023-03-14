@@ -31,10 +31,11 @@ data "aws_iam_policy_document" "role_trust_relationship" {
 data "aws_iam_policy_document" "role_policy" {
   dynamic "statement" {
     for_each = var.iam_role_actions
+    iterator = i
     content {
       effect    = "Allow"
-      actions   = [statement.value["action"]]
-      resources = [statement.value["resource"] != "" ? statement.value["resource"] : ""]
+      actions   = i.value["actions"]
+      resources = length(i.value["resources"]) > 0 ? i.value["resources"] : []
     }
   }
 }

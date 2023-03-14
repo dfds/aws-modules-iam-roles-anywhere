@@ -24,17 +24,30 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [aws_cloudwatch_event_rule.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_rule) | resource |
+| [aws_cloudwatch_event_target.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_event_target) | resource |
+| [aws_cloudwatch_log_group.lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+| [aws_iam_policy.lambda_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_role.lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_lambda_function.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) | resource |
+| [aws_lambda_permission.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
 | [aws_rolesanywhere_profile.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rolesanywhere_profile) | resource |
 | [aws_rolesanywhere_trust_anchor.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rolesanywhere_trust_anchor) | resource |
+| [aws_iam_policy_document.lambda_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.lambda_trust](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.role_trust_relationship](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_s3_object.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_object) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_iam_role_actions"></a> [iam\_role\_actions](#input\_iam\_role\_actions) | Actions and the corresponding resource that are allowed to be actioned on by the assumed role | <pre>list(object({<br>    action   = string<br>    resource = string<br>  }))</pre> | `[]` | no |
+| <a name="input_crl_name"></a> [crl\_name](#input\_crl\_name) | Name of the certificate revocation list (CRL) | `string` | n/a | yes |
+| <a name="input_crl_url"></a> [crl\_url](#input\_crl\_url) | URL of the certificate revocation list (CRL) | `string` | n/a | yes |
+| <a name="input_iam_role_actions"></a> [iam\_role\_actions](#input\_iam\_role\_actions) | Actions and the corresponding resource that are allowed to be actioned on by the assumed role | <pre>list(object({<br>    actions   = list(string)<br>    resources = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_system_environment"></a> [system\_environment](#input\_system\_environment) | System Environment | `string` | `""` | no |
 | <a name="input_system_name"></a> [system\_name](#input\_system\_name) | Name of the application of service to be used with IAM Roles Anywhere | `string` | n/a | yes |
 | <a name="input_x509_certificate_data"></a> [x509\_certificate\_data](#input\_x509\_certificate\_data) | Bundled Certificate x509 Certificate Data | `string` | n/a | yes |

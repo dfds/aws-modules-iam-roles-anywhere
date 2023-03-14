@@ -27,8 +27,22 @@ variable "x509_subject_cn_values" {
 variable "iam_role_actions" {
   description = "Actions and the corresponding resource that are allowed to be actioned on by the assumed role"
   type = list(object({
-    action   = string
-    resource = string
+    actions   = list(string)
+    resources = list(string)
   }))
   default = []
+}
+
+variable "crl_name" {
+  type = string
+  description = "Name of the certificate revocation list (CRL)"
+}
+
+variable "crl_url" {
+  type = string
+  description = "URL of the certificate revocation list (CRL)"
+  validation {
+    condition = startswith(var.crl_url, "https://")
+    error_message = "The URL must include `https://`."
+  }
 }
