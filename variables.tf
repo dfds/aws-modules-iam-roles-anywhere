@@ -46,3 +46,19 @@ variable "crl_url" {
     error_message = "The URL must include `https://`."
   }
 }
+
+variable "observability_role_arn" {
+  type = string
+  description = "ARN of the role for the cloudtrail-processor lambda to assume in the observability account"
+}
+
+variable "observability_bucket" {
+  type = string
+  description = "Name of the S3 bucket in the observability account"
+}
+
+variable "events_to_log" {
+  type = list(string)
+  description = "List of events to log"
+  default = ["CreateSession", "IssueCertificate"]
+}
