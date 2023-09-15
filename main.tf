@@ -12,6 +12,17 @@ provider "aws" {
   }
 }
 
+provider "aws" {
+  alias = "aws-shared"
+  region = var.aws_region_shared
+  default_tags {
+    tags = {
+      Environment = var.system_environment
+      System_name = var.system_name
+    }
+  }
+}
+
 resource "aws_iam_role" "this" {
   name               = "${var.system_name}-role"
   assume_role_policy = data.aws_iam_policy_document.role_trust_relationship.json
@@ -28,7 +39,7 @@ resource "aws_rolesanywhere_profile" "this" {
 }
 
 resource "aws_rolesanywhere_trust_anchor" "this" {
-  name    = "${var.system_name}-trust-achor"
+  name    = "${var.system_name}-trust-anchor"
   enabled = true
   source {
     source_data {

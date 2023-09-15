@@ -46,3 +46,27 @@ variable "crl_url" {
     error_message = "The URL must include `https://`."
   }
 }
+
+variable "crl_lambda_name" {
+  type = string
+  description = "Name of the shared lambda function that will be used to check the CRL"
+  default = "crl-importer"
+}
+
+variable "crl_lambda_path" {
+  type = string
+  description = "Path to the shared lambda function inside the shared lambda bucket that will be used to check the CRL, make sure to include the trailing slash"
+  default = "iam-rolesanywhere-lambdas/"
+}
+
+variable "shared_lambda_bucket_name" {
+  type = string
+  description = "Name of the S3 bucket where the shared lambda functions are stored"
+  default = "dfds-ce-shared-artifacts"
+}
+
+variable "aws_region_shared" {
+  type = string
+  description = "AWS Region of the shared resources. I.e Private Certificate Authority, S3 Bucket containing lambda sources"
+  default = "eu-central-1"
+}
