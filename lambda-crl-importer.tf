@@ -1,5 +1,5 @@
 locals {
-  lambda_name = "crl-importer"
+  lambda_name = var.crl_lambda_name
 }
 
 resource "aws_lambda_function" "this" {
@@ -10,8 +10,8 @@ resource "aws_lambda_function" "this" {
   reserved_concurrent_executions = 1
   runtime = "go1.x"
   handler = "main"
-  s3_bucket = "dfds-iam-roles-anywhere-artifacts"
-  s3_key = "${local.lambda_name}-lambda.zip"
+  s3_bucket = var.shared_lambda_bucket_name
+  s3_key = "${var.crl_lambda_path}${local.lambda_name}-lambda.zip"
   source_code_hash = data.aws_s3_object.this.etag
 
   environment {
@@ -25,11 +25,14 @@ resource "aws_lambda_function" "this" {
   tracing_config {
     mode = "Active"
   }
+
+  provider = aws.aws-shared
 }
 
 data "aws_s3_object" "this" {
-  bucket = "dfds-iam-roles-anywhere-artifacts"
-  key    = "${local.lambda_name}-lambda.zip"
+  bucket = var.shared_lambda_bucket_name
+  key    = "${var.crl_lambda_path}${local.lambda_name}-lambda.zip"
+  provider = aws.aws-shared
 }
 
 resource "aws_iam_role" "lambda" {
@@ -92,11 +95,15 @@ resource "aws_cloudwatch_event_rule" "this" {
 
   description = "Run ${local.lambda_name} lambda once a day"
   schedule_expression = "cron(0 20 * * ? *)"
+
+  provider = aws.aws-shared
 }
 
 resource "aws_cloudwatch_event_target" "this" {
   arn = aws_lambda_function.this.arn
   rule = aws_cloudwatch_event_rule.this.id
+
+  provider = aws.aws-shared
 }
 
 resource "aws_lambda_permission" "this" {
@@ -105,4 +112,6 @@ resource "aws_lambda_permission" "this" {
   function_name = aws_lambda_function.this.function_name
   principal     = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.this.arn
+
+  provider = aws.aws-shared
 }
