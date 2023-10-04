@@ -8,8 +8,8 @@ resource "aws_lambda_function" "this" {
   timeout                        = 120
   memory_size                    = 512
   reserved_concurrent_executions = 1
-  runtime = "go1.x"
-  handler = "main"
+  runtime = "provided.al2"
+  handler = "bootstrap"
   s3_bucket = var.shared_lambda_bucket_name
   s3_key = "${var.crl_lambda_path}${local.lambda_name}-lambda.zip"
   source_code_hash = data.aws_s3_object.this.etag
