@@ -70,3 +70,9 @@ variable "aws_region_shared" {
   description = "AWS Region of the shared resources. I.e Private Certificate Authority, S3 Bucket containing lambda sources"
   default = "eu-central-1"
 }
+
+variable "crl_shared_lambda_name" {
+  type = string
+  description = "Name of the shared lambda function zip file in the shared bucket in the shared bucket that will be used to check the CRL"
+  default = "crl-importer"
+}
