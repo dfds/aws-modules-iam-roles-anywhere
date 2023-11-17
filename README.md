@@ -50,6 +50,7 @@ No modules.
 | <a name="input_crl_lambda_name"></a> [crl\_lambda\_name](#input\_crl\_lambda\_name) | Name of the shared lambda function that will be used to check the CRL | `string` | `"crl-importer"` | no |
 | <a name="input_crl_lambda_path"></a> [crl\_lambda\_path](#input\_crl\_lambda\_path) | Path to the shared lambda function inside the shared lambda bucket that will be used to check the CRL, make sure to include the trailing slash | `string` | `"iam-rolesanywhere-lambdas/"` | no |
 | <a name="input_crl_name"></a> [crl\_name](#input\_crl\_name) | Name of the certificate revocation list (CRL) | `string` | n/a | yes |
+| <a name="input_crl_shared_lambda_name"></a> [crl\_shared\_lambda\_name](#input\_crl\_shared\_lambda\_name) | Name of the shared lambda function zip file in the shared bucket in the shared bucket that will be used to check the CRL | `string` | `"crl-importer"` | no |
 | <a name="input_crl_url"></a> [crl\_url](#input\_crl\_url) | URL of the certificate revocation list (CRL) | `string` | n/a | yes |
 | <a name="input_iam_role_actions"></a> [iam\_role\_actions](#input\_iam\_role\_actions) | Actions and the corresponding resource that are allowed to be actioned on by the assumed role | <pre>list(object({<br>    actions   = list(string)<br>    resources = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_shared_lambda_bucket_name"></a> [shared\_lambda\_bucket\_name](#input\_shared\_lambda\_bucket\_name) | Name of the S3 bucket where the shared lambda functions are stored | `string` | `"dfds-ce-shared-artifacts"` | no |
