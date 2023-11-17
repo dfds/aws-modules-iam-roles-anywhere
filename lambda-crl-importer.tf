@@ -11,7 +11,7 @@ resource "aws_lambda_function" "this" {
   runtime = "provided.al2"
   handler = "bootstrap"
   s3_bucket = var.shared_lambda_bucket_name
-  s3_key = "${var.crl_lambda_path}${local.lambda_name}-lambda.zip"
+  s3_key = "${var.crl_lambda_path}${var.crl_shared_lambda_name}-lambda.zip"
   source_code_hash = data.aws_s3_object.this.etag
 
   environment {
@@ -31,7 +31,7 @@ resource "aws_lambda_function" "this" {
 
 data "aws_s3_object" "this" {
   bucket = var.shared_lambda_bucket_name
-  key    = "${var.crl_lambda_path}${local.lambda_name}-lambda.zip"
+  key    = "${var.crl_lambda_path}${var.crl_shared_lambda_name}-lambda.zip"
   provider = aws.aws-shared
 }
 
