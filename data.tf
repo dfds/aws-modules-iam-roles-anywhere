@@ -39,3 +39,5 @@ data "aws_iam_policy_document" "role_policy" {
     }
   }
 }
+
+data "aws_region" "current" {}

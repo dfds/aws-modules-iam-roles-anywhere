@@ -12,17 +12,6 @@ provider "aws" {
   }
 }
 
-provider "aws" {
-  alias = "aws-shared"
-  region = var.aws_region_shared
-  default_tags {
-    tags = {
-      Environment = var.system_environment
-      System_name = var.system_name
-    }
-  }
-}
-
 resource "aws_iam_role" "this" {
   name               = "${var.system_name}-role"
   assume_role_policy = data.aws_iam_policy_document.role_trust_relationship.json
