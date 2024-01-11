@@ -62,7 +62,7 @@ variable "crl_lambda_path" {
 variable "shared_lambda_bucket_name" {
   type = string
   description = "Name of the S3 bucket where the shared lambda functions are stored"
-  default = "dfds-rf-ce-shared-artifacts"
+  default = "dfds-ce-shared-artifacts"
 }
 
 variable "crl_shared_lambda_name" {
