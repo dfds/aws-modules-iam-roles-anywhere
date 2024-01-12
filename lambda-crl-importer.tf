@@ -93,7 +93,7 @@ resource "aws_cloudwatch_event_rule" "this" {
   name = "run-${local.lambda_name}-lambda"
 
   description = "Run ${local.lambda_name} lambda once a day"
-  schedule_expression = "cron(0 20 * * ? *)"
+  schedule_expression = "cron(0/60 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "this" {
