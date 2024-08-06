@@ -10,5 +10,5 @@ output "iam_role_arn" {
 
 output "trust_anchor_arn" {
   description = "The Arn of the aws iam role anywhere trust anchor"
-  value = aws_rolesanywhere_trust_anchor.this.arn
+  value       = aws_rolesanywhere_trust_anchor.this.arn
 }

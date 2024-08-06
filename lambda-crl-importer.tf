@@ -1,7 +1,7 @@
 locals {
   current_region = data.aws_region.current.name
-  lambda_name = "${var.crl_lambda_name}-${local.current_region}"
-  bucket_name = local.current_region == "eu-central-1" ? var.shared_lambda_bucket_name : "${var.shared_lambda_bucket_name}-${data.aws_region.current.name}"
+  lambda_name    = "${var.crl_lambda_name}-${local.current_region}"
+  bucket_name    = local.current_region == "eu-central-1" ? var.shared_lambda_bucket_name : "${var.shared_lambda_bucket_name}-${data.aws_region.current.name}"
 }
 
 resource "aws_lambda_function" "this" {
@@ -10,16 +10,16 @@ resource "aws_lambda_function" "this" {
   timeout                        = 120
   memory_size                    = 512
   reserved_concurrent_executions = 1
-  runtime = "provided.al2"
-  handler = "bootstrap"
-  s3_bucket = local.bucket_name
-  s3_key = "${data.aws_s3_object.this.key}"
-  source_code_hash = data.aws_s3_object.this.etag
+  runtime                        = "provided.al2"
+  handler                        = "bootstrap"
+  s3_bucket                      = local.bucket_name
+  s3_key                         = data.aws_s3_object.this.key
+  source_code_hash               = data.aws_s3_object.this.etag
 
   environment {
     variables = {
-      CRL_NAME = var.crl_name
-      CRL_URL         = var.crl_url
+      CRL_NAME         = var.crl_name
+      CRL_URL          = var.crl_url
       TRUST_ANCHOR_ARN = aws_rolesanywhere_trust_anchor.this.arn
     }
   }
@@ -93,19 +93,19 @@ resource "aws_cloudwatch_log_group" "lambda" {
 resource "aws_cloudwatch_event_rule" "this" {
   name = "run-${local.lambda_name}-lambda"
 
-  description = "Run ${local.lambda_name} lambda once a day"
+  description         = "Run ${local.lambda_name} lambda once a day"
   schedule_expression = "cron(0/60 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "this" {
-  arn = aws_lambda_function.this.arn
+  arn  = aws_lambda_function.this.arn
   rule = aws_cloudwatch_event_rule.this.id
 }
 
 resource "aws_lambda_permission" "this" {
-  statement_id = "AllowExecutionFromCloudWatch"
+  statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
   principal     = "events.amazonaws.com"
-  source_arn = aws_cloudwatch_event_rule.this.arn
+  source_arn    = aws_cloudwatch_event_rule.this.arn
 }
