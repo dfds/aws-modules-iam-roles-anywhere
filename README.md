@@ -20,7 +20,7 @@ IAM Roles Anywhere allows your workloads such as servers, containers, and applic
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloudtrail_processor"></a> [cloudtrail\_processor](#module\_cloudtrail\_processor) | s3::https://dfds-ce-shared-artifacts.s3.eu-central-1.amazonaws.com/IAM-Roles-Anywhere-PCA-Observability/observability-cloudtrail-processor-lambda-1.4.0.zip | n/a |
+| <a name="module_cloudtrail_processor"></a> [cloudtrail\_processor](#module\_cloudtrail\_processor) | s3::https://dfds-ce-shared-artifacts.s3.eu-central-1.amazonaws.com/IAM-Roles-Anywhere-PCA-Observability/observability-cloudtrail-processor-lambda-1.4.1.zip | n/a |
 
 ## Resources
 
