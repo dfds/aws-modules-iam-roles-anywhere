@@ -70,3 +70,15 @@ variable "crl_shared_lambda_name" {
   description = "Name of the shared lambda function zip file in the shared bucket in the shared bucket that will be used to check the CRL"
   default = "crl-importer"
 }
+
+variable "deploy_cloudtrail_processor" {
+  type = bool
+  description = "Whether to deploy the cloudtrail-processor lambda"
+  default = true
+}
+
+variable "observability_role_arn" {
+  type        = string
+  description = "AWS arn of the role that the lambda will assume in the account to place the logs in the bucket."
+  default = ""
+}

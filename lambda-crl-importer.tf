@@ -1,6 +1,7 @@
 locals {
-  lambda_name = var.crl_lambda_name
-  bucket_name = data.aws_region.current.name == "eu-central-1" ? var.shared_lambda_bucket_name : "${var.shared_lambda_bucket_name}-${data.aws_region.current.name}"
+  current_region = data.aws_region.current.name
+  lambda_name = "${var.crl_lambda_name}-${local.current_region}"
+  bucket_name = local.current_region == "eu-central-1" ? var.shared_lambda_bucket_name : "${var.shared_lambda_bucket_name}-${data.aws_region.current.name}"
 }
 
 resource "aws_lambda_function" "this" {

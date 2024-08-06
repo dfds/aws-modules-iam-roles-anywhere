@@ -13,10 +13,10 @@ provider "aws" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = "${var.system_name}-role"
+  name               = "${var.system_name}-role-${local.current_region}"
   assume_role_policy = data.aws_iam_policy_document.role_trust_relationship.json
   inline_policy {
-    name   = "${var.system_name}-policy"
+    name   = "${var.system_name}-policy-${local.current_region}"
     policy = data.aws_iam_policy_document.role_policy.json
   }
 }
